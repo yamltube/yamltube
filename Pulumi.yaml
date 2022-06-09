@@ -1,0 +1,19 @@
+name: yamltube
+runtime: yaml
+description: Manage Your YouTube playlist in yaml
+resources:
+  waterfalls:
+    type: yamltube:youtube:Playlist
+    properties:
+      name: Making My Way Downtown
+      description: I guarantee you know these songs
+      visibility: public # or private or unlisted
+      videos:
+        - https://www.youtube.com/watch?v=FrLequ6dUdM
+        - https://www.youtube.com/watch?v=Cwkej79U3ek
+        - https://www.youtube.com/watch?v=iPUmE-tne5U
+        - https://www.youtube.com/watch?v=b7k0a5hYnSI
+        - https://www.youtube.com/watch?v=qi7Yh16dA0w
+        - https://www.youtube.com/watch?v=gte3BoXKwP0
+        - https://www.youtube.com/watch?v=KU5o6M7S5nQ
+        - https://www.youtube.com/watch?v=znlFu_lemsU
