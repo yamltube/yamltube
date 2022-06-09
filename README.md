@@ -28,7 +28,6 @@ resources:
       description: I guarantee you know these songs
       visibility: public # or private or unlisted
       videos:
-        - https://www.youtube.com/watch?v=FrLequ6dUdM
         - https://www.youtube.com/watch?v=Cwkej79U3ek
         - https://www.youtube.com/watch?v=iPUmE-tne5U
         - https://www.youtube.com/watch?v=b7k0a5hYnSI
