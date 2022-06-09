@@ -4,7 +4,7 @@ Fork this repo to manage your YouTube playlists in YAML on GitHub.
 
 ### Who is this for?
 
-To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12. This repo does not use the domain but I have a bad habit of buying domains. I could see it being useful for collaborating on public playlists without needing to give anyone permissions to a YouTube account except the account owner
+To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12. I could see it being useful for collaborating on public playlists without needing to give anyone permissions to a YouTube account except the account owner
 
 **Coming Soon Maybe**: `yamltube:spotify:Playlist`
 
