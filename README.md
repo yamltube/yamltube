@@ -21,10 +21,10 @@ name: yamltube
 runtime: yaml
 description: Manage Your YouTube playlist in yaml
 resources:
-  waterfalls:
+  makingmyway:
     type: yamltube:youtube:Playlist
     properties:
-      name: Making My Way Downtown
+      title: Making My Way Downtown
       description: I guarantee you know these songs
       visibility: public # or private or unlisted
       videos:
@@ -37,9 +37,9 @@ resources:
         - https://www.youtube.com/watch?v=znlFu_lemsU
         # not supported yet
         # merge in another playlist into this one
-        - https://www.youtube.com/playlist?list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
+        # - https://www.youtube.com/playlist?list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
         # or this way works too, it just ignores the video
-        - https://www.youtube.com/watch?v=BdEe5SpdIuo&list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
+        # - https://www.youtube.com/watch?v=BdEe5SpdIuo&list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
   rickroll:
     type: yamltube:youtube:Playlist
     properties:
@@ -48,6 +48,10 @@ resources:
       visibility: public
       videos:
         - https://www.youtube.com/watch?v=dQw4w9WgXcQ
+outputs:
+  # output links
+  rickrollLink: https://www.youtube.com/playlist?list=${rickroll.playlistId}
+  makingmywayLink: https://www.youtube.com/playlist?list=${makingmyway.playlistId}
 ```
 
 ## Setup Instructions
