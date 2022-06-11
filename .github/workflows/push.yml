@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - main
-env:
-  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-  GOOGLE_APPICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPICATION_CREDENTIALS }}
 jobs:
   update:
     name: Update
@@ -13,6 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: pulumi/actions@v3
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
           command: up
           stack-name: dev
