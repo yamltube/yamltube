@@ -65,8 +65,8 @@ Coming Soon™️
 1. Fork this repo
 1. Sign up for Pulumi and install the CLI. Just `brew install pulumi` and do a `pulumi login`. Or read the [actual docs](https://www.pulumi.com/)
 1. Obtain a `client_secret.json` for your account. Follow this [Guide](https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps) to get the file. (Sorry, no Pulumi program for this)
-1. Save `client_secret.json` to root of this repo. (must be named this way). Do not commit this file
-   1. You can verify this `client_secret.json` works by running `go build && ./verify`, and seeing if your playlists get printed out
+1. Set `GOOGLE_APPLICATION_CREDENTIALS="$(cat client_secret.json)"` env var or have `client_secret.json` saved to root of this repo. (must be named this way). Do not commit this file
+   1. You can verify this client_secret.json works by running `go build && ./verify`, and seeing if your playlists get printed out
    1. To get github actions support: Add the contents of the file to a GitHub Actions Secret as `YOUTUBE_CLIENT_SECRET`
 1. Modify `Pulumi.yml` and add your playlists
 1. Run `pulumi up`

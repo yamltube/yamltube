@@ -1,17 +1,16 @@
 name: Pulumi
 on:
   - pull_request
+env:
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
 jobs:
   preview:
     name: Preview
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          echo "${github.YOUTUBE_CLIENT_SECRET}" > ./client_secret.json
       - uses: pulumi/actions@v3
         with:
           command: preview
           stack-name: dev
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}

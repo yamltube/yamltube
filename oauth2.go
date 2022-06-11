@@ -59,9 +59,14 @@ https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
 func getClient(scope string) *http.Client {
 	ctx := context.Background()
 
-	b, err := ioutil.ReadFile("client_secret.json")
-	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
+	s, ok := os.LookupEnv("GOOGLE_APPLICATION_CREDENTIALS")
+	b := []byte(s)
+	if !ok {
+		var err error
+		b, err = ioutil.ReadFile("client_secret.json")
+		if err != nil {
+			log.Fatalf("Unable to read client secret file: %v", err)
+		}
 	}
 
 	// If modifying the scope, delete your previously saved credentials
