@@ -24,7 +24,7 @@ resources:
   makingmyway:
     type: yamltube:youtube:Playlist
     properties:
-      title: Making My Way Downtown
+      title: Making My Way
       description: I guarantee you know these songs
       visibility: public # or private or unlisted
       videos:
