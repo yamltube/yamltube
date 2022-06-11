@@ -1,4 +1,4 @@
-# YamlTube: Manage your YouTube Playlists in Yaml
+# YamlTube: YouTube Playlists in Yaml
 
 Fork this repo to manage your YouTube playlists in YAML on GitHub.
 
