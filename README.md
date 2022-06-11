@@ -1,20 +1,12 @@
 # YamlTube: YouTube Playlists in Yaml
 
-Fork this repo to manage your YouTube playlists in YAML on GitHub.
+Manage your YouTube playlists in YAML on GitHub. Just fork this repo and follow the [setup instructions](#setup-instructions)
 
-### Who is this for?
+## Who is this for?
 
 To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12.
 
-**Coming Soon Maybe**: `yamltube:spotify:Playlist`
-
-### Long Term Requirements For This To Be Super Cool
-
-- You should be able to set this up on your phone. Which means it needs to be 100% managable from the browser. You should be able to fork
-  yamltube's repo, click a link in the readme, and authenticate somehow with youtube and pulumi
-- Two way sync of a playlist back into YAML. Basically you would edit playlist in the YouTube app and then it commits to master or a PR automatically opens up.
-
-Anyways, this is how you define a playlist:
+## Anyways, this is how you define a playlist:
 
 ```yaml
 name: yamltube
