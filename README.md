@@ -10,11 +10,11 @@ To be honest, I have no idea. It seemed like a funny concept and yamltube.com wa
 
 ### Long Term Requirements For This To Be Super Cool
 
-- You should be able to set this up on your phone. Which means it needs to be 100% setup-able and managable from the browser. You should be able to fork
+- You should be able to set this up on your phone. Which means it needs to be 100% managable from the browser. You should be able to fork
   yamltube's repo, click a link in the readme, and authenticate somehow with youtube and pulumi
-- Two way sync of a playlist back into YAML. Basically you would edit playlist in the YouTube app and a PR automatically opens up on the repo with the new links
+- Two way sync of a playlist back into YAML. Basically you would edit playlist in the YouTube app and then it commits to master or a PR automatically opens up.
 
-This is how you define a playlist:
+Anyways, this is how you define a playlist:
 
 ```yaml
 name: yamltube
