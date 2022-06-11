@@ -4,6 +4,7 @@ on:
 env:
   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+  GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
 jobs:
   preview:
     name: Preview
@@ -14,10 +15,11 @@ jobs:
         with:
           path: pulumi-yamltube
           repository: mchaynes/pulumi-yamltube
+          ref: main
       - run: |
           pushd pulumi-yamltube && make provider && popd
       - run: echo "${{ github.workspace }}/pulumi-yamltube/bin" >> $GITHUB_PATH
       - uses: pulumi/actions@v3
         with:
           command: preview
-          stack-name: dev
+          stack-name: myleschaynes
