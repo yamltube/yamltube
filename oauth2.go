@@ -7,11 +7,8 @@ import (
 	"log"
 	"net"
 	"net/http"
-	"net/url"
 	"os"
 	"os/exec"
-	"os/user"
-	"path/filepath"
 	"runtime"
 
 	"golang.org/x/net/context"
@@ -43,27 +40,16 @@ import (
 //      authorization code from the browser and enter it on the command line.
 const launchWebServer = true
 
-const missingClientSecretsMessage = `
-Please configure OAuth 2.0
-To make this sample run, you need to populate the client_secrets.json file
-found at:
-   %v
-with information from the {{ Google Cloud Console }}
-{{ https://cloud.google.com/console }}
-For more information about the client_secrets.json file format, please visit:
-https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
-`
-
 // getClient uses a Context and Config to retrieve a Token
 // then generate a Client. It returns the generated Client.
 func getClient(scope string) *http.Client {
 	ctx := context.Background()
 
-	s, ok := os.LookupEnv("GOOGLE_APPLICATION_CREDENTIALS")
+	s, ok := os.LookupEnv(EnvVarClientSecret)
 	b := []byte(s)
 	if !ok {
 		var err error
-		b, err = ioutil.ReadFile("client_secret.json")
+		b, err = ioutil.ReadFile(FileClientSecret)
 		if err != nil {
 			log.Fatalf("Unable to read client secret file: %v", err)
 		}
@@ -73,7 +59,7 @@ func getClient(scope string) *http.Client {
 	// at ~/.credentials/youtube-go.json
 	config, err := google.ConfigFromJSON(b, scope)
 	if err != nil {
-		log.Fatalf("Unable to parse client secret file to config: %v", err)
+		log.Fatalf("Unable to parse client secret to config: %v", err)
 	}
 
 	// Use a redirect URI like this for a web app. The redirect URI must be a
@@ -82,7 +68,7 @@ func getClient(scope string) *http.Client {
 	// Use the following redirect URI if launchWebServer=false in oauth2.go
 	// config.RedirectURL = "urn:ietf:wg:oauth:2.0:oob"
 
-	cacheFile, err := tokenCacheFile()
+	cacheFile := FileAppCreds
 	if err != nil {
 		log.Fatalf("Unable to get path to cached credential file. %v", err)
 	}
@@ -188,19 +174,6 @@ func getTokenFromWeb(config *oauth2.Config, authURL string) (*oauth2.Token, erro
 	return exchangeToken(config, code)
 }
 
-// tokenCacheFile generates credential file path/filename.
-// It returns the generated credential path/filename.
-func tokenCacheFile() (string, error) {
-	usr, err := user.Current()
-	if err != nil {
-		return "", err
-	}
-	tokenCacheDir := filepath.Join(usr.HomeDir, ".credentials")
-	os.MkdirAll(tokenCacheDir, 0700)
-	return filepath.Join(tokenCacheDir,
-		url.QueryEscape("youtube-go.json")), err
-}
-
 // tokenFromFile retrieves a Token from a given file path.
 // It returns the retrieved Token and any read error encountered.
 func tokenFromFile(file string) (*oauth2.Token, error) {
@@ -217,7 +190,6 @@ func tokenFromFile(file string) (*oauth2.Token, error) {
 // saveToken uses a file path to create a file and store the
 // token in it.
 func saveToken(file string, token *oauth2.Token) {
-	fmt.Println("trying to save token")
 	fmt.Printf("Saving credential file to: %s\n", file)
 	f, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0600)
 	if err != nil {

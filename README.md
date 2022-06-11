@@ -80,17 +80,69 @@ outputs:
 
 ## Setup Instructions
 
-### Automated Setup
+### 1. Fork this repo
 
-Coming Soon™️
+Pretty straightforward
 
-### Manual Setup
+### 2. Sign up for Pulumi and install the CLI.
 
-1. Fork this repo
-1. Sign up for Pulumi and install the CLI. Just `brew install pulumi` and do a `pulumi login`. Or read the [actual docs](https://www.pulumi.com/)
-1. Obtain a `client_secret.json` for your account. Follow this [Guide](https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps) to get the file. (Sorry, no Pulumi program for this)
-1. Set `GOOGLE_APPLICATION_CREDENTIALS="$(cat client_secret.json)"` env var or have `client_secret.json` saved to root of this repo. (must be named this way). Do not commit this file
-   1. You can verify this client_secret.json works by running `go build && ./verify`, and seeing if your playlists get printed out
-   1. To get github actions support: Add the contents of the file to a GitHub Actions Secret as `YOUTUBE_CLIENT_SECRET`
-1. Modify `Pulumi.yml` and add your playlists
-1. Run `pulumi up`
+1. You can probably just `brew install pulumi` and do a `pulumi login`. Or go read the [docs](https://www.pulumi.io/)
+2. Obtain a Pulumi Access Token
+
+### 3. Get Credentials To Access YouTube API
+
+Obtain a `client_secret.json` for your account. Follow this [Guide](https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps) to get the file. (Sorry, no Pulumi program for this)
+
+### 4. Generate `application_credentials.json`
+
+Run `go build && ./verify`
+
+### 5. Modify and create your playlists
+
+Modify `Pulumi.yml` and add your playlists
+Run `pulumi up`
+
+```sh
+❯ pulumi up
+Please choose a stack, or create a new one: myleschaynes
+Previewing update (myleschaynes)
+
+View Live: https://app.pulumi.com/myles/yamltube/myleschaynes/previews/32aaa161-a683-43c1-a1fe-049169d6c584
+
+     Type                          Name                   Plan
+ +   pulumi:pulumi:Stack           yamltube-myleschaynes  create
+ +   ├─ yamltube:youtube:Playlist  makingmyway            create
+ +   └─ yamltube:youtube:Playlist  rickroll               create
+
+Resources:
+    + 3 to create
+
+Do you want to perform this update? yes
+Updating (myleschaynes)
+
+View Live: https://app.pulumi.com/myles/yamltube/myleschaynes/updates/1
+
+     Type                          Name                   Status
+ +   pulumi:pulumi:Stack           yamltube-myleschaynes  created
+ +   ├─ yamltube:youtube:Playlist  rickroll               created
+ +   └─ yamltube:youtube:Playlist  makingmyway            created
+
+Outputs:
+    makingmywayLink: "https://www.youtube.com/playlist?list=PLeQFt2AXw9mS-8BzL96OkySMOTArBTA0O"
+    rickrollLink   : "https://www.youtube.com/playlist?list=PLeQFt2AXw9mSQKAyZTPhMvO080-mOAkMJ"
+
+Resources:
+    + 3 created
+
+Duration: 4s
+```
+
+### 6. Github Actions Setup (Optional, but you really should)
+
+Set up `GOOGLE_APPLICATION_CREDENTIALS` & `PULUMI_ACCESS_TOKEN`
+
+To get github actions support: Add the contents of the file to a GitHub Actions Secret as `GOOGLE_APPLICATION_CREDENTIALS`
+
+1. Go to your forked repo, click `Settings` > `Secrets` > `Actions`
+1. Paste in the `GOOGLE_APPLICATION_CREDENTIALS` file
+1. Paste in your `PULUMI_ACCESS_TOKEN`
