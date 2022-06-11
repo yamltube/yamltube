@@ -4,7 +4,7 @@ Fork this repo to manage your YouTube playlists in YAML on GitHub.
 
 ### Who is this for?
 
-To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12.
+To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $14.17.
 
 **Coming Soon Maybe**: `yamltube:spotify:Playlist`
 
