@@ -54,6 +54,30 @@ outputs:
   makingmywayLink: https://www.youtube.com/playlist?list=${makingmyway.playlistId}
 ```
 
+## Future Work: Spotify Playlists?
+
+```yaml
+name: yamltube
+runtime: yaml
+description: a spotify playlist
+resources:
+  makingmyway:
+    type: yamltube:spotify:Playlist
+    properties:
+      title: Walkin Fast
+      tracks:
+        - link: https://open.spotify.com/track/4w1lzcaoZ1IC2K5TwjalRP
+        # or
+        - title: A Thousand Miles
+          artist: Vanessa Carlton
+          album: Be Not Nobody
+        # or
+        - isrc: USIR10210955 # https://www.isrcfinder.com/
+outputs:
+  # outputs link like: https://open.spotify.com/playlist/37i9dQZF1DX8NTLI2TtZa6
+  makingmywayLink: ${makingmyway.link}
+```
+
 ## Setup Instructions
 
 ### Automated Setup
