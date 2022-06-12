@@ -117,8 +117,9 @@ Run:
 
 ### 5. Modify and create your playlists
 
-Modify `Pulumi.yml` and add your playlists
-Run `pulumi up`
+1. Modify `Pulumi.yml` and add your playlists
+
+1. Run `pulumi up`
 
 ```sh
 ❯ pulumi up

@@ -47,7 +47,6 @@ func run() error {
 	}
 	maybePrintCmd(EnvVarAppCreds, FileAppCreds)
 	maybePrintCmd(EnvVarClientSecret, FileClientSecret)
-	fmt.Println(`    pulumi up`)
 	return nil
 }
 
