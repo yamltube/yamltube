@@ -12,7 +12,7 @@ To be honest, I have no idea. It seemed like a funny concept and yamltube.com wa
 
 ![Demo of Web Only Workflow](https://user-images.githubusercontent.com/17183569/173210714-072d88ae-1f29-4da4-8406-b4b1e38c5aca.gif)
 
-## Anyways, this is how you define a playlist:
+## This is how you define a playlist:
 
 ```yaml
 name: yamltube
@@ -77,6 +77,15 @@ outputs:
 ```
 
 ## Setup Instructions
+
+### 0. An apology for even having to do any of this
+
+All these steps shouldn't be necessary. We should be able to link our github identity with a google identity somehow completely through the web
+then we should be able to store those credentials in github secrets automatically. The main issue is that you've got to create your own oauth app and get that `client_secret.json` file. Otherwise I could just prompt you from the first run of a github action run.
+
+I could in theory create an app that other people could use but I don't know enough about this stuff to say whether that works. 
+
+I hope there's a better way to do this long term
 
 ### 1. Fork this repo
 
