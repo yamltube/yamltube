@@ -5,12 +5,11 @@ resources:
   rickroll:
     type: yamltube:youtube:Playlist
     properties:
-      title: Good Songs
-      description: Sing us a song
+      title: Rick Roll
+      description: I'm sorry
       visibility: public
       videos:
         - https://www.youtube.com/watch?v=dQw4w9WgXcQ
-        - https://www.youtube.com/watch?v=gxEPV4kolz0
   makingmyway:
     type: yamltube:youtube:Playlist
     properties:
