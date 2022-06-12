@@ -9,7 +9,7 @@ Manage your YouTube playlists in YAML on GitHub. Just fork this repo and follow 
 To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12.
 
 ## Demo
-![Demo of Web Only Workflow](https://user-images.githubusercontent.com/17183569/173210104-0631b831-7b10-4ce8-90cd-87b11f2ebda7.gif)
+![Demo of Web Only Workflow](https://user-images.githubusercontent.com/17183569/173210714-072d88ae-1f29-4da4-8406-b4b1e38c5aca.gif)
 
 
 ## Anyways, this is how you define a playlist:
