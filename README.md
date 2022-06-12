@@ -152,3 +152,5 @@ Go to your forked repo, click `Settings` > `Secrets` > `Actions`
 | PULUMI_ACCESS_TOKEN            | <token> from ui                            |
 +--------------------------------+--------------------------------------------+
 ```
+
+![action secret page screenshot](assets/actions-secrets.png)
