@@ -29,6 +29,7 @@ resources:
       visibility: public
       videos:
         - https://www.youtube.com/watch?v=dQw4w9WgXcQ
+        - https://www.youtube.com/watch?v=gxEPV4kolz0
 outputs:
   # output links
   rickrollLink: https://www.youtube.com/playlist?list=${rickroll.playlistId}
