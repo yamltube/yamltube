@@ -2,6 +2,8 @@
 
 Manage your YouTube playlists in YAML on GitHub. Just fork this repo and follow the [setup instructions](#setup-instructions)
 
+[Edit YAML](https://github.dev/mchaynes/yamltube/Pulumi.yaml)
+
 ## Who is this for?
 
 To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12.
