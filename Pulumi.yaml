@@ -2,6 +2,14 @@ name: yamltube
 runtime: yaml
 description: Manage Your YouTube playlist in yaml
 resources:
+  rickroll:
+    type: yamltube:youtube:Playlist
+    properties:
+      title: Rick Roll
+      description: I'm sorry
+      visibility: public
+      videos:
+        - https://www.youtube.com/watch?v=dQw4w9WgXcQ
   makingmyway:
     type: yamltube:youtube:Playlist
     properties:
@@ -21,15 +29,6 @@ resources:
         # - https://www.youtube.com/playlist?list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
         # or this way works too, it just ignores the video
         # - https://www.youtube.com/watch?v=BdEe5SpdIuo&list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
-  rickroll:
-    type: yamltube:youtube:Playlist
-    properties:
-      title: Rick Roll
-      description: I'm sorry
-      visibility: public
-      videos:
-        - https://www.youtube.com/watch?v=dQw4w9WgXcQ
-        - https://www.youtube.com/watch?v=gxEPV4kolz0
 outputs:
   # output links
   rickrollLink: https://www.youtube.com/playlist?list=${rickroll.playlistId}
