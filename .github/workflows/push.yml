@@ -27,4 +27,4 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
           command: up
-          stack-name: myleschaynes
+          stack-name: ${{ secrets.STACK_NAME }}

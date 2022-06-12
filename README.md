@@ -9,8 +9,8 @@ Manage your YouTube playlists in YAML on GitHub. Just fork this repo and follow 
 To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12.
 
 ## Demo
-![Demo of Web Only Workflow](https://user-images.githubusercontent.com/17183569/173210714-072d88ae-1f29-4da4-8406-b4b1e38c5aca.gif)
 
+![Demo of Web Only Workflow](https://user-images.githubusercontent.com/17183569/173210714-072d88ae-1f29-4da4-8406-b4b1e38c5aca.gif)
 
 ## Anyways, this is how you define a playlist:
 
@@ -101,7 +101,7 @@ Rick Roll              https://www.youtube.com/playlist?list=PLeQFt2AXw9mQpVhWC5
 Making My Way Downtown https://www.youtube.com/playlist?list=PLeQFt2AXw9mQNM6J7WA_v37PvOdXBYtG-
 
 Successfully saved ./application_credentials.json
-Run: 
+Run:
     export GOOGLE_APPLICATION_CREDENTIALS="$(cat ./application_credentials.json)"
     export GOOGLE_CLIENT_SECRET="$(cat ./client_secret.json)"
 ```
@@ -149,13 +149,15 @@ Duration: 4s
 ### 6. Github Actions Setup (Optional, but you really should)
 
 Go to your forked repo, click `Settings` > `Secrets` > `Actions`
+
 ```
 +--------------------------------+--------------------------------------------+
 |          Secret Name           |                   Value                    |
 +--------------------------------+--------------------------------------------+
 | GOOGLE_CLIENT_SECRET           | contents of ./client_secret.json           |
 | GOOGLE_APPLICATION_CREDENTIALS | contents of ./application_credentials.json |
-| PULUMI_ACCESS_TOKEN            | <token> from ui                            |
+| PULUMI_ACCCESS_TOKEN           | <token> from ui                            |
+| STACK_NAME                     | name of the pulumi stack                   |
 +--------------------------------+--------------------------------------------+
 ```
 
