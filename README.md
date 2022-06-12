@@ -82,9 +82,18 @@ outputs:
 
 Pretty straightforward
 
+But, if you want to have a private repo, just create a blank repo on github, then do this:
+```sh
+  git clone https://github.com/mchaynes/yamltube.git
+  cd yamltube
+  git remote add private git@github:mchaynes/private.git
+  git push private main
+  👁👄👁
+```
+
 ### 2. Sign up for Pulumi and install the CLI.
 
-1. You can probably just `brew install pulumi` and do a `pulumi login`. Or go read the [docs](https://www.pulumi.io/)
+1. You can probably just do a `brew install pulumi && pulumi login`. Or go read the [docs](https://www.pulumi.io/)
 2. Obtain a [Pulumi Access Token](https://www.pulumi.com/docs/intro/pulumi-service/accounts/#access-tokens)
 
 ### 3. Get Credentials To Access YouTube API
