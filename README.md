@@ -91,7 +91,10 @@ I hope there's a better way to do this long term
 
 Pretty straightforward
 
-But, if you want to have a private repo, just create a blank repo on github, then do this:
+<details>
+
+<summary> private repo instructions </summary>
+
 ```sh
   git clone https://github.com/mchaynes/yamltube.git
   cd yamltube
@@ -99,6 +102,10 @@ But, if you want to have a private repo, just create a blank repo on github, the
   git push private main
   👁👄👁
 ```
+
+</details>
+
+
 
 ### 2. Sign up for Pulumi and install the CLI.
 
