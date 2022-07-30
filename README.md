@@ -1,58 +1,31 @@
-# YamlTube: YouTube Playlists in Yaml
+# YamlTube's Pulumi Provider
 
-Manage your YouTube playlists in YAML on GitHub. Just fork this repo and follow the [setup instructions](#setup-instructions)
+This repo contains a pulumi native provider for yamltube. It contacts and synchronizes YouTube playlists on your behalf.
 
-[Edit YAML](https://github.dev/mchaynes/yamltube/Pulumi.yaml)
+If you want to use YamlTube, go fork the [YamlTube repo](https://github.com/mchaynes/yamltube)
 
-## Who is this for?
-
-To be honest, I have no idea. It seemed like a funny concept and yamltube.com was $12.
-
-## Demo
-
-![Demo of Web Only Workflow](https://user-images.githubusercontent.com/17183569/173210714-072d88ae-1f29-4da4-8406-b4b1e38c5aca.gif)
-
-## This is how you define a playlist:
+### What does a YouTube playlist in Yaml look like?
 
 ```yaml
-name: yamltube
+name: yaml-rickroll
 runtime: yaml
-description: Manage Your YouTube playlist in yaml
+description: A rick roll playlist
 resources:
-  makingmyway:
-    type: yamltube:youtube:Playlist
-    properties:
-      title: Making My Way
-      description: I guarantee you know these songs
-      visibility: public # or private or unlisted
-      videos:
-        - https://www.youtube.com/watch?v=Cwkej79U3ek
-        - https://www.youtube.com/watch?v=iPUmE-tne5U
-        - https://www.youtube.com/watch?v=b7k0a5hYnSI
-        - https://www.youtube.com/watch?v=qi7Yh16dA0w
-        - https://www.youtube.com/watch?v=gte3BoXKwP0
-        - https://www.youtube.com/watch?v=KU5o6M7S5nQ
-        - https://www.youtube.com/watch?v=znlFu_lemsU
-        # not supported yet
-        # merge in another playlist into this one
-        # - https://www.youtube.com/playlist?list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
-        # or this way works too, it just ignores the video
-        # - https://www.youtube.com/watch?v=BdEe5SpdIuo&list=PLeQFt2AXw9mSQpqcBfHkufqpBsS2x4hTD
   rickroll:
     type: yamltube:youtube:Playlist
     properties:
-      title: Rick Roll
-      description: I'm sorry
+      title: "Rick Roll"
+      description: "I couldn't think of a better example"
       visibility: public
       videos:
         - https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
 outputs:
-  # output links
-  rickrollLink: https://www.youtube.com/playlist?list=${rickroll.playlistId}
-  makingmywayLink: https://www.youtube.com/playlist?list=${makingmyway.playlistId}
+  # output a link to the playlist
+  playlist: https://www.youtube.com/playlist?list=${rickroll.playlistId}
 ```
 
-## Future Work: Spotify Playlists?
+### Does this support other Pulumi supported languages?
 
 ```yaml
 name: yamltube
