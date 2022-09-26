@@ -1,4 +1,4 @@
-module github.com/mchaynes/yamltube/verify
+module github.com/mchaynes/yamltube
 
 go 1.18
 
@@ -20,4 +20,5 @@ require (
 	google.golang.org/genproto v0.0.0-20220527130721-00d5c0f3be58 // indirect
 	google.golang.org/grpc v1.46.2 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

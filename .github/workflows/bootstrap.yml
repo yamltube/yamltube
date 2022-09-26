@@ -1,0 +1,33 @@
+name: Bootstrap OIDC
+on:
+  push:
+    paths:
+      - Pulumi.yaml
+    branches:
+      - main
+env:
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+jobs:
+  bootstrap:
+    name: Bootstrap OIDC
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch Github Release Asset
+        uses: dsaltares/fetch-gh-release-asset@1.0.0
+        with:
+          repo: mchaynes/pulumi-yamltube
+          version: tags/v0.0.4
+          file: 'pulumi-resource-yamltube-v0.0.4-linux-amd64.tar.gz'
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract Pulumi Resource
+        run: tar -xzf pulumi-resource-yamltube-v0.0.4-linux-amd64.tar.gz -C ./
+      - run: echo "${{ github.workspace }}" >> $GITHUB_PATH
+      - uses: pulumi/actions@v3
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        with:
+          command: up
+          stack-name: ${{ secrets.STACK_NAME }}

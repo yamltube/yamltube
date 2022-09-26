@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
-	"text/tabwriter"
+	"strings"
 
-	"google.golang.org/api/option"
-	"google.golang.org/api/youtube/v3"
+	"github.com/mchaynes/yamltube/youtube"
+	"gopkg.in/yaml.v3"
 )
 
 const (
@@ -25,47 +26,50 @@ func main() {
 	}
 }
 
+type YamlTube struct {
+	Playlists []Playlist	
+}
+
+type Playlist struct {
+	Title string `yaml:"title"`
+	Description string `yaml:"description"`
+	Visibility string `yaml:"visibility"`
+	Videos []string `yaml:"videos"`
+}
+
 func run() error {
 	ctx := context.Background()
-
-	client := getClient(youtube.YoutubeScope)
-	service, err := youtube.NewService(ctx, option.WithHTTPClient(client))
-	if err != nil {
-		return fmt.Errorf("failed to create youtube service: %w", err)
+	envOrDefault := func(envVar, def string) string {
+		if val, ok := os.LookupEnv(envVar); ok {
+			return val
+		}
+		return def
 	}
-	err = printPlaylists(service)
+
+	endpoint := envOrDefault("YAMLTUBE_ENDPOINT", "https://yamltube.com/google/refresh")
+	refreshToken := envOrDefault("YAMLTUBE_REFRESH_TOKEN", "")
+
+	service, err := youtube.New(ctx, endpoint, refreshToken)
+	if err != nil {
+		return fmt.Errorf("failed to connect to youtube: %w", err)
+	}
+	playlists, err := service.GetPlaylists(ctx)
+	b, err := ioutil.ReadFile("tube.yaml")
 	if err != nil {
 		return err
 	}
-	fmt.Println()
-	fmt.Println("Successfully saved ./application_credentials.json")
-	fmt.Println("Run: ")
-	maybePrintCmd := func(env, file string) {
-		if _, ok := os.LookupEnv(env); !ok {
-			fmt.Printf("    export %s=\"$(cat %s)\"\n", env, file)
-		}
+	var yamltube YamlTube
+	if err = yaml.Unmarshal(b, &yamltube); err != nil {
+		return err
 	}
-	maybePrintCmd(EnvVarAppCreds, FileAppCreds)
-	maybePrintCmd(EnvVarClientSecret, FileClientSecret)
+	
 	return nil
 }
 
-func printPlaylists(service *youtube.Service) error {
-	playlistsCall := service.Playlists.List([]string{"snippet,contentDetails"})
-	playlistsCall.Mine(true)
-	playlistsCall.MaxResults(100)
-	playlistsResp, err := playlistsCall.Do()
-	if err != nil {
-		return fmt.Errorf("failed to get playlists: %w", err)
+func toPlaylistMap(playlists []Playlist) map[string]Playlist {
+	playlistMap := make(map[string]Playlist)
+	for _, playlist := range playlists {
+		playlistMap[strings.ToLower(playlist.Title)] = playlist
 	}
-	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
-	for _, playlist := range playlistsResp.Items {
-		link := fmt.Sprintf("https://www.youtube.com/playlist?list=%s", playlist.Id)
-		_, _ = fmt.Fprintf(w, "%s\t%s\n", playlist.Snippet.Title, link)
-	}
-	w.Flush()
-	if len(playlistsResp.Items) == 0 {
-		fmt.Println("Able to fetch playlists, but none returned")
-	}
-	return nil
+	return playlistMap
 }
