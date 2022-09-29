@@ -20,6 +20,20 @@ type YouTube struct {
 	service *youtube.Service
 }
 
+type Playlist struct {
+	ID          string
+	Title       string
+	Description string
+	Visibility  string
+	Videos      []PlaylistItem
+}
+
+type PlaylistItem struct {
+	ID      string
+	VideoID string
+	Title   string
+}
+
 type PlaylistInsert struct {
 	VideoId  string
 	Position int64
@@ -74,7 +88,6 @@ func (s *source) Token() (*oauth2.Token, error) {
 }
 
 func New(ctx context.Context, endpoint, refreshToken string) (*YouTube, error) {
-
 	sauce := source{
 		endpoint:     endpoint,
 		refreshToken: refreshToken,
@@ -267,6 +280,8 @@ func (y *YouTube) GetPlaylists(ctx context.Context) ([]*youtube.Playlist, error)
 	firstPage := true
 	for len(pageToken) > 0 || firstPage {
 		resp, err := y.service.Playlists.List([]string{"id,snippet,status"}).
+			Mine(true).
+			PageToken(pageToken).
 			MaxResults(50).
 			Context(ctx).
 			Do()
@@ -274,6 +289,8 @@ func (y *YouTube) GetPlaylists(ctx context.Context) ([]*youtube.Playlist, error)
 			return nil, err
 		}
 		playlists = append(playlists, resp.Items...)
+		pageToken = resp.NextPageToken
+		firstPage = false
 	}
 	return playlists, nil
 }
