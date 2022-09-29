@@ -1,8 +1,8 @@
 # YamlTube
 
-#### YamlTube lets you manage your youtube playlists in yaml on GitHub using GitHub actions.
+#### Create YouTube playlists in YAML on GitHub
 
-Just go to https://yamltube.com to create your GitHub repo. It'll create and configure a repo automatically for you.
+Go to https://yamltube.com to create your GitHub repo. It'll create and configure a repo automatically for you.
 
 Setting up the repo can is done entirely in your browser.
 
