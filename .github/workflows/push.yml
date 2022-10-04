@@ -23,6 +23,6 @@ jobs:
         with:
           go-version: "1.19"
       - run: pushd bin/ && go build . && popd
-      - run: ./bin/yamltube
+      - run: ./bin/yamltube-bin
         env:
           YAMLTUBE_REFRESH_TOKEN: ${{ secrets.YAMLTUBE_REFRESH_TOKEN }}
