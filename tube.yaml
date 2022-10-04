@@ -2,6 +2,7 @@ youtube:
   playlists:
     - title: Never Gonna Give You Up
       description: Never Gonna Let You Down
+      # public, private, or unlisted
       visibility: public
       videos:
         - https://www.youtube.com/watch?v=dQw4w9WgXcQ
