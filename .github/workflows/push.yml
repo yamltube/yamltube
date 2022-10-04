@@ -1,8 +1,6 @@
 name: Pulumi
 on:
   push:
-    paths:
-      - Pulumi.yaml
     branches:
       - main
 env:
