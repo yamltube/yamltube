@@ -46,3 +46,4 @@ Maybe define a single "playlist" and have it synchronized between a bunch of dif
 Yah. Just follow the instructions on the [yamltube/bin](https://github.com/yamltube/bin) repo.
 
 https://yamltube.com only exists to make setup easier for those who don't want to waste their time in the GCP console.
+
